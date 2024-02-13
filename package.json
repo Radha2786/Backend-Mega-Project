@@ -1,0 +1,16 @@
+{
+  "name": "backend-mega-project",
+  "version": "1.0.0",
+  "description": "VideoTube backend project",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Radha Sharma",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.3",
+    "prettier": "^3.2.5"
+  }
+}
