@@ -39,6 +39,6 @@ const videoSchema = new Schema({
     timestamps:true
 })
 
-videoSchema.plugin(mongooseAggregatePaginate)
+videoSchema.plugin(mongooseAggregatePaginate)  // plugin krna padta hai taaki aggregation query use kar sake
 
 export default Video = mongoose.model("Video", videoSchema)
