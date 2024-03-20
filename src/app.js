@@ -15,4 +15,12 @@ app.use(express.static("public"));
 app.use(cookieParser())
 // extended true se hum object ke andar object de skte hain
 
+// importing routes 
+import userRouter from "./routes/user.routes.js";
+
+// router declaration
+app.use("/api/v1/users",userRouter);
+
+// http://localhost:3000/api/v1/users/register
+
 export default app ;
