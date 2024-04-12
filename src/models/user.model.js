@@ -47,6 +47,7 @@ const userSchema = new Schema({
 
 }, {timestamps:true});
 
+// bcrypt is used to hash password 
 userSchema.pre("save", async function (next){
     if(this.isModified("password")){
         this.password= await bcrypt.hash(this.password, 10) // 10 is round here
@@ -58,10 +59,12 @@ userSchema.pre("save", async function (next){
 // phla argument pre hook m ki kispar kaam karana hai and second call back(we are not using arrow function bcz arrow fn m this ka access ni hota)
 
 // checking provided password is valid or not 
+// .methods ek object hota hai to hum .methods par . karke apne khudke custom methods bna skte hain 
 userSchema.methods.isPasswordCorrect = async function(password){
     return bcrypt.compare(password,this.password)
 }
 
+// jwt is a bearer token (means jo bhi usko bear karega hum usko shi maan lenge
 userSchema.methods.generateAccessToken = function(){
     return jwt.sign({
         _id: this._id,
@@ -75,7 +78,7 @@ userSchema.methods.generateAccessToken = function(){
     }
     )
 }
-userSchema.methods.generateAccessToken = function(){
+userSchema.methods.generateRefreshToken = function(){
     return jwt.sign({
         _id: this._id,
     },
@@ -87,3 +90,4 @@ userSchema.methods.generateAccessToken = function(){
 }
 
 export const User = mongoose.model("User", userSchema);
+
