@@ -50,6 +50,7 @@ const userSchema = new Schema({
 
 // bcrypt is used to hash password 
 userSchema.pre("save", async function (next) {
+    console.log("printing this", this);
     if(!this.isModified("password")) return next();
     this.password = await bcrypt.hash(this.password, 10);
     next()
@@ -64,6 +65,7 @@ userSchema.methods.isPasswordCorrect = async function(password){
     // console.log(typeof password);
     return await bcrypt.compare(password,this.password)
 }
+// the compare function automatically extracts the salt from storedHashedPassword and uses it to hash the entered password. It then compares the resulting hash with the stored hash.If they match, it indicates that the entered password is crct.
 
 // jwt is a bearer token (means jo bhi usko bear karega hum usko shi maan lenge
 userSchema.methods.generateAccessToken = function(){

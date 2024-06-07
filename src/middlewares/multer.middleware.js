@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     // koi error nahi hai that's why first parameter is null
     filename: function (req, file, cb) {
 
-      cb(null, file.originalname) // hum original name se save kra rhe hain
+      cb(null, file.originalname+Math.random()) // hum original name se save kra rhe hain
     }
   })
   
